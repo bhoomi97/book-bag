@@ -1,0 +1,27 @@
+<% include partials/header %>
+<% include partials/navbar %>
+
+<div class='container-fluid '>
+
+  <div class='row'>
+    <div class="col-xs-1 col-sm-3"></div>
+    <div class="col-xs-10 col-sm-6 text-center">
+
+        <h1> Upload New Product: </h1>
+
+        <form action="/sell" method="POST">
+            <input class="form-control" type="file" accept=".png, .jpg, .jpeg"  placeholder="Image" name="image" >
+            <input class="form-control" type="text" placeholder="Title Of The Book" name="title" required>
+            <textarea class="form-control" placeholder="Enter details about your product.. " name="desc"></textarea>
+            <input class="form-control" type="number" placeholder="Your Contact Number" name="contact" required></input>
+            <input class="form-control" type="text" placeholder="Enter Your Name" name="postedBy" required></input>
+            <button class="btn btn-success" type="submit"> Upload </button>
+        </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<% include partials/footer %>

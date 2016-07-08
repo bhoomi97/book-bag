@@ -1,0 +1,37 @@
+<% include partials/header %>
+<% include partials/navbar %>
+
+<div class='container-fluid '>
+  <div class="row">
+
+  <%  allBooks.forEach(function(book){ %>
+    <div class="col-xs-12 col-sm-4 col-md-3 text-center">
+      <div class="thumbnail">
+          <img src="http://placehold.it/320x150" alt="Image">
+          <div class="caption">
+              <% if(book.sold) { %>
+                <h4 class=""> Sold </h4>
+              <% } else { %>
+                <h4 class=""> Available </h4>
+              <% } %>
+              <h4><a> <%= book.title %></a></h4>
+              <p> <%= book.description %> </p>
+              <a class="btn btn-success" href="/show">Read More</a>
+          </div>
+          <div class="info">
+              <p class="pull-right"> <%= book.uploadDate.toDateString() %> </p>
+              <p class="author"> <%= book.postedBy %> </p>
+          </div>
+      </div>
+    </div>
+
+  <%  }) %>
+
+
+  </div>
+
+
+</div>
+
+
+<% include partials/footer %>
