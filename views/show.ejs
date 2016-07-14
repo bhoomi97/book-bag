@@ -1,0 +1,42 @@
+<% include partials/header %>
+<% include partials/navbar %>
+
+<div class='container-fluid '>
+  <div class="row">
+
+    <div class="book-wrap col-xs-12 col-sm-6 col-sm-push-3 text-center">
+      <div class="thumbnail">
+          <img src="http://placehold.it/320x150" alt="Image">
+          <div class="caption">
+              <% if(book.sold) { %>
+                <h4 class=""> Sold </h4>
+              <% } else { %>
+                <h4 class=""> Available </h4>
+              <% } %>
+              <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
+              <button> Mark As Sold </button>
+              <% } %>
+
+              <h4><a> <%= book.title %></a></h4>
+              <p> <%= book.description %> </p>
+          </div>
+          <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
+          <a class="btn btn-info" href="#"> Edit Details </a>
+          <a class="btn btn-danger" href="#"> Delete </a>
+          <% } %>
+
+          <div class="info">
+              <p class="pull-right"> <%= book.uploadDate.toDateString() %> </p>
+              <p class="author"> Posted By: <%= book.user.username %> </p>
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+<% include partials/footer %>

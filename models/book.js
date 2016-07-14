@@ -5,6 +5,13 @@ var bookSchema = new mongoose.Schema({
   postedBy: String,
   contact: String,
   description: String,
+  user: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    username: String
+  },
   sold: { type:Boolean, default: false },
   uploadDate: { type: Date, default:Date.now }
 });

@@ -1,0 +1,37 @@
+/* Browse Page Styles */
+
+.book-wrap .thumbnail {
+  border-radius: 0px;
+}
+
+.caption {
+    /*height: 180px;*/
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.info {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.author {
+  text-align: left;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 20px;
+    color: #333;
+}

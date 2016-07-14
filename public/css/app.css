@@ -1,0 +1,163 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Lato|Poiret+One);
+
+.topspace{
+  padding-top:120px;
+}
+
+.navbar-fixed-top .container-fluid {
+  padding:30px 35px;
+
+}
+
+.smaller {
+  padding: 0 !important;
+  padding: 10px 20px !important;
+}
+/*Image*/
+img#bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /*Push back*/
+  z-index:-1;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img#bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+
+/*end*/
+
+.landing-wrapper {
+  /*background: url('../img/bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;*/
+  color: #fff;
+  font-family: "Poiret One";
+}
+
+.jumbotron {
+  background: transparent;
+}
+
+.jumbotron .container-fluid {
+  padding: 35px 0;
+  background: rgba(204, 204, 204, 0.3);
+}
+
+.nav-wrap {
+  border-radius: 0px;
+  border: none;
+}
+
+.nav-wrap a, .nav-wrap a:active, .nav-wrap a:focus {
+    border-radius: 0px;
+    outline: none;
+    padding: 20px 0;
+    border: none;
+    background: rgba(236, 236, 236, 0.61) !important;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 20px;
+    transition: all 0.3s linear;
+    border-bottom: 5px solid transparent;
+}
+
+.nav-wrap a:hover {
+  color: #fff;
+  background: rgba(191, 189, 189, 0.54);
+  border-bottom: 5px solid #fff;
+}
+
+.home-logo {
+  padding: 20px 0;
+}
+.home-logo-img {
+  height: 100px;
+  margin: 0 auto;
+}
+
+
+
+
+/* ==================================================================================
+                           Common Navbar
+====================================================================================*/
+.navbar {
+  border-right: 0;
+  border-left: 0;
+  border-radius:0;
+}
+
+.navbar-default {
+    background-color: #2E3837;
+    border-color: #e7e7e7;
+}
+    .navbar-brand {
+      padding:0 10px;
+    }
+      #brand-logo {
+        height: 50px;
+      }
+  .navbar-nav {
+    padding: 0 10px;
+  }
+  .navbar-default .navbar-collapse {
+      margin-top: 20px;
+    }
+    .navbar-default .navbar-nav>li>a {
+      color: #fff ;
+      font-family: "Poiret One";
+      letter-spacing: 1px;
+      font-size:18px;
+      transition: all 0.3s linear;
+      margin-right: 5px;
+    }
+
+    .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:active {
+      color: #fff;
+      background: rgba(160, 160, 160, 0.31);
+    }
+
+  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+      background-color: rgba(221, 221, 221, 0.18);
+  }
+
+/* ============================================================================
+                             Common Navbar End
+  ==============================================================================*/
+  @media only screen and (min-width: 768px) {
+    .nav-wrap .btn-group {
+      display: none;
+    }
+
+    .quote p {
+      font-size: 35px;
+      font-weight: bold;
+      text-shadow: 5px 5px 10px rgb(18, 20, 40);
+    }
+    .author p {
+      font-size: 25px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .navbar-default .navbar-collapse {
+      margin-top: 0;
+    }
+  }
