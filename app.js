@@ -11,14 +11,14 @@ var passport = require("passport"),
 var Book    = require("./models/book"),
     User = require("./models/user")
 
-// Databse Initialize
+// Mongoose Connection
 mongoose.connect("mongodb://localhost/demo");
 
 // App Config
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
-  // passport config
+// passport config
   app.use(require("express-session")({
     secret: "random text",
     resave: false,
@@ -91,6 +91,19 @@ app.post("/sell", function(req, res){
 
 });
 
+app.get("/browse/:id/sold", function(req, res){
+    Book.findById(req.params.id, function(err, book){
+      if(err) {
+        res.redirect("back");
+      } else {
+        var sold = book.sold;
+        Book.findByIdAndUpdate(req.params.id, { $set: { sold: !sold } }, function(err, book){
+          console.log(book);
+        });
+        res.redirect("back");
+      }
+  });
+});
 // Auth Routes
 
 app.get("/signup", function(req, res){

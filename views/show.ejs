@@ -10,12 +10,20 @@
           <div class="caption">
               <% if(book.sold) { %>
                 <h4 class=""> Sold </h4>
+                    <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
+                        <form action="/browse/<%= book._id %>/sold" method="GET">
+                          <button type="submit"> Mark As Available </button>
+                        </form>
+                    <% } %>
               <% } else { %>
                 <h4 class=""> Available </h4>
+                    <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
+                        <form action="/browse/<%= book._id %>/sold" method="GET">
+                          <button type="submit"> Mark As Sold </button>
+                        </form>
+                    <% } %>
               <% } %>
-              <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
-              <button> Mark As Sold </button>
-              <% } %>
+
 
               <h4><a> <%= book.title %></a></h4>
               <p> <%= book.description %> </p>
