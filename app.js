@@ -1,7 +1,19 @@
 var express = require("express"),
     app     = express(),
+    multer = require("multer"),
     mongoose = require("mongoose"),
     bodyParser = require("body-parser")
+
+// Multer Storage Options
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+});
+var upload = multer({ storage: storage });
 
 // Auth Packages
 var passport = require("passport"),
@@ -51,6 +63,14 @@ app.get("/browse", function(req, res){
 
 });
 
+// Browse By year
+app.get("/browse/:year", function(req, res){
+  var year = req.params.year;
+  Book.find({year: year} , function(err, allBooks){
+    res.render("browse", {allBooks: allBooks});
+  });
+})
+
 app.get("/browse/:id", function(req, res, user){
   Book.findById(req.params.id, function(err, foundBook){
     if(err) {
@@ -65,10 +85,12 @@ app.get("/sell", function(req, res){
   res.render("new");
 });
 
-app.post("/sell", function(req, res){
+app.post("/sell", upload.single('image'), function(req, res){
   // Get Input data
   var title = req.body.title,
+      image = req.file.filename,
       desc  = req.body.desc,
+      year = req.body.year,
       contact = req.body.contact,
       postedBy = req.body.postedBy;
   if(req.user) {
@@ -77,7 +99,7 @@ app.post("/sell", function(req, res){
       username: req.user.username
     }
   }
-  var newBook = { title: title, description: desc, contact: contact ,user: user, postedBy: postedBy };
+  var newBook = { title: title, image: image, description: desc, year: year, contact: contact ,user: user, postedBy: postedBy };
 
   // store in database
 
@@ -91,19 +113,34 @@ app.post("/sell", function(req, res){
 
 });
 
-app.get("/browse/:id/sold", function(req, res){
+// app.get("/browse/:id/sold", function(req, res){
+//     Book.findById(req.params.id, function(err, book){
+//       if(err) {
+//         res.redirect("back");
+//       } else {
+//         var sold = book.sold;
+//         Book.findByIdAndUpdate(req.params.id, { $set: { sold: !sold } }, function(err, book){});
+//         res.redirect("back");
+//       }
+//   });
+// });
+
+// testing
+app.get("/browse/:id/sold", checkOwner,  function(req, res){
     Book.findById(req.params.id, function(err, book){
       if(err) {
         res.redirect("back");
       } else {
-        var sold = book.sold;
-        Book.findByIdAndUpdate(req.params.id, { $set: { sold: !sold } }, function(err, book){
-          console.log(book);
+        book.sold = !book.sold;
+        book.save(function(err){
+          if(err)
+            console.log(err);
         });
         res.redirect("back");
       }
   });
 });
+
 // Auth Routes
 
 app.get("/signup", function(req, res){

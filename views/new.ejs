@@ -9,7 +9,7 @@
 
         <h1> Upload New Product: </h1>
 
-        <form action="/sell" method="POST">
+        <form action="/sell" enctype="multipart/form-data" method="POST">
             <input class="form-control" type="file" accept=".png, .jpg, .jpeg"  placeholder="Image" name="image" >
             <input class="form-control" type="text" placeholder="Title Of The Book" name="title" required>
             <textarea class="form-control" placeholder="Enter details about your product.. " name="desc"></textarea>
@@ -17,6 +17,15 @@
             <% if(!currentUser) { %>
             <input class="form-control" type="text" placeholder="Enter Your Name" name="postedBy" required></input>
             <% } %>
+            <label>
+              Year : <select name="year">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+            </label>
+
             <button class="btn btn-success" type="submit"> Upload </button>
         </form>
 

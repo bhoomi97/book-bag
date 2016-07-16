@@ -2,20 +2,32 @@
 <% include partials/navbar %>
 
 <div class='container-fluid '>
+  <div class='row text-center'>
+    <div class='col-xs-12'>
+      <b>Browse By Year:</b>
+      <div class="btn-group" role="group">
+        <a type="button" class="btn btn-default" href="/browse/1"> Ist</a>
+        <a type="button" class="btn btn-default" href="/browse/2">IInd</a>
+        <a type="button" class="btn btn-default" href="/browse/3">IIIrd</a>
+        <a type="button" class="btn btn-default" href="/browse/4">IVth</a>
+      </div>
+    </div>
+  </div>
+  <br>
   <div class="row">
-
   <%  allBooks.forEach(function(book){ %>
     <div class="book-wrap col-xs-12 col-sm-4 col-md-3 text-center">
       <div class="thumbnail">
-          <img src="http://placehold.it/320x150" alt="Image">
+          <img src="/uploads/<%= book.image %>" alt="Image">
           <div class="caption">
-              <% if(book.sold) { %>
-                <h4 class=""> Sold </h4>
-              <% } else { %>
-                <h4 class=""> Available </h4>
-              <% } %>
               <h4><a> <%= book.title %></a></h4>
-              <a class="btn btn-success" href="/browse/<%= book._id %>">More Info</a>
+              <% if(book.sold) { %>
+                <h5 style="color:red;"> Sold </h5>
+              <% } else { %>
+                <h5 style="color:green;"> Available </h5>
+              <% } %>
+
+              <a class="btn btn-default" href="/browse/<%= book._id %>">More Info</a>
           </div>
           <div class="info">
               <p> <%= book.uploadDate.toDateString() %> </p>
@@ -27,6 +39,8 @@
 
 
   </div>
+
+
 
 
 </div>

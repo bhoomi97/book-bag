@@ -6,8 +6,10 @@
 
     <div class="book-wrap col-xs-12 col-sm-6 col-sm-push-3 text-center">
       <div class="thumbnail">
-          <img src="http://placehold.it/320x150" alt="Image">
+          <img src="/uploads/<%= book.image %>" alt="Image">
+          <a  href="/uploads/<%= book.image %>">View Full Image</a>
           <div class="caption">
+            <h3><a> <%= book.title %></a></h3>
               <% if(book.sold) { %>
                 <h4 class=""> Sold </h4>
                     <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
@@ -23,10 +25,8 @@
                         </form>
                     <% } %>
               <% } %>
-
-
-              <h4><a> <%= book.title %></a></h4>
               <p> <%= book.description %> </p>
+
           </div>
           <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
           <a class="btn btn-info" href="#"> Edit Details </a>
@@ -40,10 +40,13 @@
       </div>
     </div>
 
-
   </div>
 
-
+  <div class="row text-center">
+    <div class="col-xs-12">
+      <a class="btn btn-default" href="/browse"> <span class=" fa fa-chevron-circle-left"></span> Back To All </a>
+    </div>
+  </div>
 </div>
 
 
