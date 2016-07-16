@@ -1,5 +1,19 @@
 # book-bag
-<h1>How To Setup Application: </h1>
+<h2> Book Bag Web App Features: </h2>
+<ul>
+  <li>Upload your product without signing up.</li>
+  <li>Browse through the full collection.</li>
+  <li>Browse by graduation year.</li>
+  <li> <b> Sign Up Advantages: </b>
+    <ul>
+      <li>Mark products as Sold/Available</li>
+      <li>Edit product info anytime.</li>
+      <li>Delete products that are sold</li>
+    </ul>  
+</ul>
+
+
+<h4>How To Setup Application: </h4>
 <ol>
   <li>
     Clone project on your computer.
