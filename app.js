@@ -1,6 +1,7 @@
 var express = require("express"),
     app     = express(),
     multer = require("multer"),
+    methodOverride = require("method-override"),
     mongoose = require("mongoose"),
     bodyParser = require("body-parser")
 
@@ -30,6 +31,7 @@ mongoose.connect("mongodb://localhost/demo");
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
 // passport config
   app.use(require("express-session")({
     secret: "random text",
@@ -54,7 +56,7 @@ app.use(function(req, res,next){
 app.get("/", function(req, res){
     res.render("landing");
 });
-
+// Get all products
 app.get("/browse", function(req, res){
 
     Book.find({} , function(err, allBooks){
@@ -62,30 +64,27 @@ app.get("/browse", function(req, res){
     });
 
 });
-
-// Browse By year
-app.get("/browse/:year", function(req, res){
+// Get all products By year
+app.get("/browse/year/:year", function(req, res){
   var year = req.params.year;
   Book.find({year: year} , function(err, allBooks){
     res.render("browse", {allBooks: allBooks});
   });
-})
-
-app.get("/browse/:id", function(req, res, user){
-  Book.findById(req.params.id, function(err, foundBook){
-    if(err) {
-      res.redirect("/browse");
-    } else {
-      res.render("show", {book: foundBook});
-    }
+});
+// Get all products by user
+app.get("/browse/user/:username", function(req, res){
+  var username = req.params.username;
+  Book.find({ 'user.username' : username }, function(err, allBooks){
+    res.render("browse", {allBooks: allBooks});
   })
 });
 
-app.get("/sell", function(req, res){
+// Add a new product
+app.get("/browse/new", function(req, res){
   res.render("new");
 });
-
-app.post("/sell", upload.single('image'), function(req, res){
+// Upload a product
+app.post("/browse", upload.single('image'), function(req, res){
   // Get Input data
   var title = req.body.title,
       image = req.file.filename,
@@ -113,19 +112,52 @@ app.post("/sell", upload.single('image'), function(req, res){
 
 });
 
-// app.get("/browse/:id/sold", function(req, res){
-//     Book.findById(req.params.id, function(err, book){
-//       if(err) {
-//         res.redirect("back");
-//       } else {
-//         var sold = book.sold;
-//         Book.findByIdAndUpdate(req.params.id, { $set: { sold: !sold } }, function(err, book){});
-//         res.redirect("back");
-//       }
-//   });
-// });
+// Show details of a product
+app.get("/browse/:id", function(req, res){
 
-// testing
+  Book.findById(req.params.id, function(err, foundBook){
+    if(err) {
+      res.redirect("/browse");
+    } else {
+      res.render("show", {book: foundBook});
+    }
+  });
+});
+// edit form for a product
+app.get("/browse/:id/edit", function(req, res){
+  Book.findById(req.params.id, function(err, foundBook){
+    if(err)
+      res.redirec("back");
+    else
+      res.render("edit", {book: foundBook});
+  })
+});
+// update a product
+app.put("/browse/:id", upload.single('image'), function(req, res){
+  var image = req.file.filename;
+  var book = req.body.book;
+  book.image = image;
+  // console.log(book);
+  Book.findByIdAndUpdate(req.params.id, book, function(err, updatedBook){
+    if(err)
+      res.redirect("back");
+    else {
+      res.redirect("/browse/"+ req.params.id);
+    }
+  })
+})
+// delete
+app.delete("/browse/:id", function(req, res){
+    Book.findByIdAndRemove(req.params.id, function(err){
+        if(err) {
+            res.redirect("back");
+        } else {
+            res.redirect("/browse");
+        }
+    });
+})
+
+// mark product as sold
 app.get("/browse/:id/sold", checkOwner,  function(req, res){
     Book.findById(req.params.id, function(err, book){
       if(err) {
@@ -141,7 +173,22 @@ app.get("/browse/:id/sold", checkOwner,  function(req, res){
   });
 });
 
-// Auth Routes
+// app.get("/browse/:id/sold", function(req, res){
+//     Book.findById(req.params.id, function(err, book){
+//       if(err) {
+//         res.redirect("back");
+//       } else {
+//         var sold = book.sold;
+//         Book.findByIdAndUpdate(req.params.id, { $set: { sold: !sold } }, function(err, book){});
+//         res.redirect("back");
+//       }
+//   });
+// });
+
+
+
+
+// ====================== Auth Routes
 
 app.get("/signup", function(req, res){
   res.render("signup");

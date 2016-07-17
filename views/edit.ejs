@@ -1,0 +1,38 @@
+<% include partials/header %>
+<% include partials/navbar %>
+
+<div class='container-fluid '>
+
+  <div class='row'>
+    <div class="col-xs-1 col-sm-3"></div>
+    <div class="col-xs-10 col-sm-6 text-center">
+
+        <h1> Edit: <%= book.title %> </h1>
+
+        <form action="/browse/<%= book._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+            <input class="form-control" value="<%= book.image %>" type="file" accept=".png, .jpg, .jpeg"  placeholder="Image" name="image" >
+            <input class="form-control" value="<%= book.title %>" type="text" placeholder="Title Of The Book" name="book[title]" required>
+            <textarea class="form-control" placeholder="Enter details about your product.. " name="book[description]">
+              <%= book.description %>
+            </textarea>
+            <input class="form-control" value="<%= book.contact %>" type="number" placeholder="Your Contact Number" name="book[contact]" required></input>
+
+            <label>
+              Year : <select name="book[year]">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+            </label>
+
+            <button class="btn btn-success" type="submit"> Update </button>
+        </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<% include partials/footer %>

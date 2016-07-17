@@ -29,13 +29,19 @@
 
           </div>
           <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
-          <a class="btn btn-info" href="#"> Edit Details </a>
-          <a class="btn btn-danger" href="#"> Delete </a>
+          <a class="btn btn-info" href="/browse/<%= book.id %>/edit"> Edit Details </a>
+          <form action="/browse/<%= book._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger" > Delete </button>
+          </form>
           <% } %>
 
           <div class="info">
               <p class="pull-right"> <%= book.uploadDate.toDateString() %> </p>
-              <p class="author"> Posted By: <%= book.user.username %> </p>
+              <% if(!book.postedBy) { %>
+                <p class="author"> Posted By: <a href="/browse/user/<%= book.user.username %>"><%= book.user.username %></a>  </p>
+              <%  } else { %>
+              <p class="author"> Posted By: <%= book.postedBy %> </p>
+              <%  } %>
           </div>
       </div>
     </div>
