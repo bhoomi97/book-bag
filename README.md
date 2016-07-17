@@ -3,13 +3,19 @@
 <ul>
   <li>Upload your product without signing up.</li>
   <li>Browse through the full collection.</li>
-  <li>Browse by graduation year.</li>
+  <li>Browse by:
+    <ul>
+      <li>graduation year</li>
+      <li>username</li>
+    </ul>
+  </li>
   <li> <b> Sign Up Advantages: </b>
     <ul>
       <li>Mark products as Sold/Available</li>
       <li>Edit product info anytime.</li>
       <li>Delete products that are sold</li>
-    </ul>  
+    </ul>
+  </li>
 </ul>
 
 
