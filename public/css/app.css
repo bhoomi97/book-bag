@@ -249,6 +249,7 @@ outline: none;
 .card form button, .card form button:focus {
     display: block;
     margin: 0 auto;
+    width: 80%;
     background: #8dc63f;
     border: none;
     border-radius: 0;

@@ -106,6 +106,7 @@ app.post("/browse", upload.single('image'), function(req, res){
     if(err) {
       console.log(err);
     } else {
+
       res.redirect("/browse");
     }
   });
@@ -120,20 +121,22 @@ app.get("/browse/:id", function(req, res){
       res.redirect("/browse");
     } else {
       res.render("show", {book: foundBook});
+      console.log(foundBook.user);
     }
   });
 });
 // edit form for a product
-app.get("/browse/:id/edit", function(req, res){
+app.get("/browse/:id/edit", checkOwner, function(req, res){
   Book.findById(req.params.id, function(err, foundBook){
     if(err)
       res.redirec("back");
     else
       res.render("edit", {book: foundBook});
+
   })
 });
 // update a product
-app.put("/browse/:id", upload.single('image'), function(req, res){
+app.put("/browse/:id", checkOwner, upload.single('image'), function(req, res){
   var image = req.file.filename;
   var book = req.body.book;
   book.image = image;

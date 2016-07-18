@@ -1,0 +1,76 @@
+.btn {
+  border-radius: 0;
+}
+.btn-default, .btn-default:hover, .btn-default:focus {
+  border: none;
+  background-color: #2e3837;
+  color: #fff;
+}
+
+.back.btn {
+  margin: 10px 0;
+}
+
+.show.product {
+  margin: 15px 0;
+}
+
+/*===============image ==================*/
+
+
+.show.product .image img {
+  margin: 0 auto;
+}
+
+  @media only screen and (max-width: 768px) {
+    .show.product .image {
+      max-height: 250px;
+      overflow: hidden;
+    }
+  }
+
+/*==================content==================*/
+
+.show.product .contents {
+  background: #fff;
+  padding: 25px 10px;
+  border:1px solid rgba(76, 76, 76, 0.11);
+  border-left: none;
+  box-shadow: 2px 2px 5px rgba(204, 204, 204, 0.73);
+}
+
+.content .username {
+  display: block;
+  border-bottom: 1px solid rgba(76, 76, 76, 0.11);
+  padding-bottom: 10px;
+  width: 80%;
+  margin: 0 auto;
+  font-weight: bold;
+  color: #41bfcc;
+}
+
+.content .product-info p {
+  padding: 10px 0 10px 10px;
+  font-weight: bold;
+}
+.content .product-info p.sold {color:#f26c4f }
+.content .product-info p.available {color: #8dc63f}
+
+.product-info .title {
+  font-weight: bolder;
+  font-family: Lato;
+  color: #41bfcc;
+}
+
+.product-info .desc {
+  font-family: "Roboto Sans";
+}
+
+/*Buttons*/
+.product-info .buttons form {
+  display: inline;
+}
+
+.product-info .buttons .btn {
+  border-radius: 0;
+}

@@ -1,7 +1,87 @@
 <% include partials/header %>
 <% include partials/navbar %>
 
-<div class='container-fluid '>
+      <div class='container-fluid '>
+
+        <div class="row show product">
+            <!-- Image Div  -->
+            <div class="col-xs-12 col-sm-5 col-sm-push-1 text-center">
+              <div class="image">
+                <img class="img-responsive" src="/uploads/<%= book.image %>" alt="Image">
+              </div>
+                <a href="/uploads/<%= book.image %>">View Enlarged Image</a>
+            </div>
+            <!-- Content Div -->
+            <div class="contents col-xs-12 col-sm-5 col-sm-push-1">
+              <div class="content">
+                <!-- Username -->
+                  <% if(!book.postedBy) { %>
+                    <a class="username" href="/browse/user/<%= book.user.username %>"><%= book.user.username %></a>
+                  <%  } else { %>
+                    <p class="username"> <%= book.postedBy %> </p>
+                  <%  } %>
+
+                <!-- Other info -->
+
+                  <div class="product-info">
+                      <!-- Date -->
+                      <p class="pull-right"> <%= book.uploadDate.toDateString() %> </p>
+                      <!-- Available/ Sold -->
+                      <% if(book.sold) { %>
+                        <p class="sold"> Sold </p>
+                            <% if( !book.postedBy  && currentUser) { %>
+                              <% if(currentUser._id.equals(book.user.id)) { %>
+                                <form action="/browse/<%= book._id %>/sold" method="GET">
+                                  <button class="btn btn-success" type="submit"> Mark Available </button>
+                                </form>
+                              <% } %>
+                            <% } %>
+                      <% } else { %>
+                        <p class="available"> Available </p>
+                            <% if( !book.postedBy && currentUser) { %>
+                              <% if(currentUser._id.equals(book.user.id)) { %>
+                                <form action="/browse/<%= book._id %>/sold" method="GET">
+                                  <button class="btn btn-danger" type="submit"> Mark Sold </button>
+                                </form>
+                              <% } %>
+                            <% } %>
+                      <% } %>
+
+                      <!-- book title -->
+                      <h3 class="title text-center"> <%= book.title %> </h3>
+                      <!-- description -->
+                      <div class="desc text-center"> <%= book.description %> </div>
+                      <p class="contact"> Contact Me : <%=book.contact %> </p>
+                      <div class="buttons text-center">
+                        <% if( !book.postedBy && currentUser) { %>
+                          <% if(currentUser._id.equals(book.user.id)) { %>
+                            <a class="btn btn-info" href="/browse/<%= book.id %>/edit"> Edit </a>
+                            <form action="/browse/<%= book._id %>?_method=DELETE" method="POST">
+                              <button class="btn btn-danger" > Delete </button>
+                            </form>
+                          <% } %>
+                        <% } %>
+                      </div>
+                  </div>
+
+              </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-xs-12">
+            <a class="btn btn-default back " href="/browse"> <span class=" fa fa-chevron-circle-left"></span> Back To All </a>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+<!-- ============================================================ -->
+
+<!-- <div class='container-fluid '>
   <div class="row">
 
     <div class="book-wrap col-xs-12 col-sm-6 col-sm-push-3 text-center">
@@ -26,6 +106,7 @@
                     <% } %>
               <% } %>
               <p> <%= book.description %> </p>
+
 
           </div>
           <% if(currentUser && (book.user.id).equals(currentUser._id)) { %>
@@ -53,7 +134,7 @@
       <a class="btn btn-default" href="/browse"> <span class=" fa fa-chevron-circle-left"></span> Back To All </a>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <% include partials/footer %>
