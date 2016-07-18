@@ -18,7 +18,10 @@
   <%  allBooks.forEach(function(book){ %>
     <div class="book-wrap col-xs-12 col-sm-4 col-md-3 text-center">
       <div class="thumbnail">
+          <div class="image">
           <img src="/uploads/<%= book.image %>" alt="Image">
+          </div>
+
           <div class="caption">
               <h4><a> <%= book.title %></a></h4>
               <% if(book.sold) { %>

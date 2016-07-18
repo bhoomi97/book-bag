@@ -1,37 +1,76 @@
-<% include partials/header %>
+<html>
+  <head>
+    <title>bookBag</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/browse.css">
+  </head>
+  <body>
 
-<img id="bg" src="./img/bg.jpg" alt="">
-<div class="container-fluid landing-wrapper">
+      <img id="bg" src="https://static.pexels.com/photos/27458/pexels-photo-27458.jpg" alt="">
 
-  <div class="home-logo col-xs-10 col-xs-push-1 col-sm-4 col-sm-push-4 text-center">
-    <a  href="/">
-      <img class="img-responsive home-logo-img" src="/img/logo.png" alt="logo">
-    </a>
-  </div>
+      <!-- <div class="container-fluid">
+         <div class='row home'>
 
-  <div class="container-fluid">
+         <div class="col-xs-12 col-sm-6">
 
-      <div class="row">
-        <div class="nav-wrap btn-group btn-group-justified" role="group">
-            <a href="/browse" class="btn btn-default home-btn" role="button">Browse</a>
-            <a href="/sell" class="btn btn-default home-btn" role="button">Sell</a>
-            <a href="/signup" class="btn btn-default hidden-xs home-btn" role="button">Sign Up</a>
-            <a href="/signin" class="btn btn-default home-btn" role="button">Sign In</a>
-        </div>
-      </div>
+          <div class="row text-center">
+            <img class="img-responsive home-logo" src="/img/logo.png" alt="logo" >
+          </div>
+          <div class="row">
 
-    <div class="jumbotron">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 text-center quote">
-                    <p>An investment in knowledge always pays the best interest.</p>
-                </div>
-            </div>
+              <ul class="list-group text-center">
+                <li class="home list-group-item"><a href="/browse">Browse</a></li>
+                <li class="home list-group-item"><a href="/browse/new">Sell</a></li>
+                <li class="home list-group-item"><a href="/signup">Sign Up</a></li>
+                <li class="home list-group-item"><a href="/signin">Sign In</a></li>
+              </ul>
 
           </div>
-    </div>
 
-</div>
+         </div>
+
+       </div>
+      </div> -->
 
 
-<% include partials/footer %>
+
+      <div class="container-fluid landing-wrapper">
+
+        <div class="home-logo col-xs-10 col-xs-push-1 col-sm-4 col-sm-push-4 text-center">
+          <a  href="/">
+            <img class="img-responsive home-logo-img" src="/img/logo.png" alt="logo">
+          </a>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+              <div class="nav-wrap btn-group btn-group-justified" role="group">
+                  <a href="/browse" class="btn btn-default home-btn" role="button">Browse</a>
+                  <a href="/sell" class="btn btn-default home-btn" role="button">Sell</a>
+                  <a href="/signup" class="btn btn-default hidden-xs home-btn" role="button">Sign Up</a>
+                  <a href="/signin" class="btn btn-default home-btn" role="button">Sign In</a>
+              </div>
+            </div>
+
+          <div class="jumbotron">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-xs-10 col-xs-push-1 col-sm-8 col-sm-push-2 text-center quote">
+                          <p>An investment in knowledge always pays the best interest.</p>
+                      </div>
+                  </div>
+
+                </div>
+          </div>
+
+      </div>
+
+    <script src="../js/smaller.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
+</html>

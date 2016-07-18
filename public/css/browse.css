@@ -30,6 +30,11 @@
 .thumbnail {
     padding: 0;
 }
+.thumbnail .image {
+    max-height: 150px;
+    min-height: 100px;
+    overflow: hidden;
+}
 
 .thumbnail .caption-full {
     padding: 20px;

@@ -1,4 +1,47 @@
-@import url(http://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Lato|Poiret+One);
+@import url(http://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Lato|Poiret+One|Stardos+Stencil|Gochi+Hand|Irish+Grover);
+
+/*===============landing-wrapper====================*/
+.home.row {
+  padding: 30px 0;
+  height: 100%;
+  background: rgba(253, 145, 142, 0.19);
+}
+
+/*========styles for side book background image======= */
+
+/*.home-logo {
+  height: 250px;
+margin: 0 auto;
+}
+
+.list-group .home a {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-family: "Poiret One";
+  font-size: 30px;
+  color:#f26c4f;
+  text-decoration: none;
+}
+
+.list-group .home a:hover {
+
+}
+
+.list-group-item {
+  background-color: transparent;
+  border: none;
+  width: 50%;
+  margin: 0 auto;
+  transition: 0.2s linear;
+}
+.list-group-item:hover {
+  border-left: 5px solid #8dc63f;
+
+}*/
+
+/*end*/
+
 
 .topspace{
   padding-top:120px;
@@ -48,6 +91,7 @@ img#bg {
   background-attachment: fixed;*/
   color: #fff;
   font-family: "Poiret One";
+  background: rgba(222, 222, 222, 0.57);
 }
 
 .jumbotron {
@@ -57,8 +101,11 @@ img#bg {
 .jumbotron .container-fluid {
   padding: 35px 0;
   background: rgba(204, 204, 204, 0.3);
+  color:#f26522;
 }
 
+
+/* seperate home page navigation only */
 .nav-wrap {
   border-radius: 0px;
   border: none;
@@ -70,7 +117,7 @@ img#bg {
     padding: 20px 0;
     border: none;
     background: rgba(236, 236, 236, 0.61) !important;
-    color: #fff;
+    color: #f26522;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 2px;
@@ -80,20 +127,31 @@ img#bg {
 }
 
 .nav-wrap a:hover {
-  color: #fff;
+  color: #8dc63f;
   background: rgba(191, 189, 189, 0.54);
-  border-bottom: 5px solid #fff;
+  border-bottom: 5px solid #8dc63f;
 }
 
 .home-logo {
   padding: 20px 0;
 }
 .home-logo-img {
-  height: 100px;
+  height: 200px;
   margin: 0 auto;
 }
 
-
+/*form*/
+.form-control {
+  height: 40px;
+padding: 10px 15px;
+margin: 8px 0;
+font-size: 16px;
+color: #2f1f1f;
+background-color: rgb(255, 255, 255);
+border: none;
+border-radius: 0px;
+outline: none;
+}
 
 
 /* ==================================================================================
@@ -113,8 +171,11 @@ img#bg {
       padding:0 10px;
     }
       #brand-logo {
-        height: 50px;
+
+          height: 65px;
+          transform: translate(0px, -5px);
       }
+
   .navbar-nav {
     padding: 0 10px;
   }
@@ -142,6 +203,115 @@ img#bg {
 /* ============================================================================
                              Common Navbar End
   ==============================================================================*/
+
+
+/*Sign Up / Sign In Cards*/
+
+.card.new {
+  margin-top: 0;
+  /*margin-bottom: 10px;*/
+}
+
+.card {
+  margin-bottom: 15px;
+  margin-top: 30px;
+  background: #2e3837;
+  color: #fff;
+  font-family: Lato;
+  padding: 30px 10px;
+}
+
+.card h1 {
+    padding-bottom: 20px;
+    font-family: Poiret One;
+}
+
+.card form input, .card form input:focus, .card form textarea {
+    margin-bottom: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 5px solid #41bfcc;
+    background: rgba(204, 204, 204, 0.33);
+    outline: none;
+    -webkit-appearance: none
+}
+.card form input:focus {
+  outline: none;
+}
+
+.new.card form input, .new.card form textarea {
+  margin-bottom:auto;
+}
+
+.card form textarea { height: 150px; }
+
+.card form button, .card form button:focus {
+    display: block;
+    margin: 0 auto;
+    background: #8dc63f;
+    border: none;
+    border-radius: 0;
+    padding: 10px 15px;
+    font-size: 20px;
+    transition: 0.1s linear;
+}
+.card form button:focus { outline:none; }
+.card form button:hover, .card form button:active {
+  background: #8dc63f;
+  letter-spacing: 1px;
+}
+.card p {
+  margin-top: 25px;
+}
+
+.card p a {
+    color: #fff;
+    font-family: Poiret One;
+    font-size: 16px;
+}
+
+.card form label {
+  display: block;
+    max-width: 80%;
+    margin: 8px auto;
+    font-size: 16px;
+    background: rgba(204, 204, 204, 0.33);
+    border-left: 5px solid #41bfcc;
+    color: #919292;
+    padding: 5px 0;
+}
+
+/* sticky footer */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.wrap {
+  flex:1;
+}
+
+#footer {
+  background: #2e3837;
+  color: #fff;
+  padding: 5px 0;
+  width: 100%;
+}
+
+#footer .copyright {
+  margin: 0;
+  letter-spacing: 1px;
+  font-family: "Poiret One";
+}
+#footer .copyright a {
+  color: #41bfcc;
+}
+
+/* sticky footer styles end */
+
+
   @media only screen and (min-width: 768px) {
     .nav-wrap .btn-group {
       display: none;
@@ -150,7 +320,6 @@ img#bg {
     .quote p {
       font-size: 35px;
       font-weight: bold;
-      text-shadow: 5px 5px 10px rgb(18, 20, 40);
     }
     .author p {
       font-size: 25px;
