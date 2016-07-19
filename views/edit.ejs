@@ -5,9 +5,11 @@
 
   <div class='row'>
     <div class="col-xs-1 col-sm-3"></div>
-    <div class="col-xs-10 col-sm-6 text-center">
+    <div class="card new col-xs-10 col-sm-6 text-center">
 
         <h1> Edit: <%= book.title %> </h1>
+        <div class="alert alert-danger" role="alert"> <b>Hey!</b> Please choose an image again. </div>
+
 
         <form action="/browse/<%= book._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
             <input class="form-control" value="<%= book.image %>" type="file" accept=".png, .jpg, .jpeg"  placeholder="Image" name="image" >

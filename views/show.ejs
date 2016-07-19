@@ -1,6 +1,7 @@
 <% include partials/header %>
 <% include partials/navbar %>
-
+      <% var bookUser = book.user.id; %>
+      <% var userExists = bookUser ? ( currentUser ? true : false ) : false %>
       <div class='container-fluid '>
 
         <div class="row show product">
@@ -15,10 +16,10 @@
             <div class="contents col-xs-12 col-sm-5 col-sm-push-1">
               <div class="content">
                 <!-- Username -->
-                  <% if(!book.postedBy) { %>
-                    <a class="username" href="/browse/user/<%= book.user.username %>"><%= book.user.username %></a>
+                  <% if(bookUser) { %>
+                    <a class="username" href="/browse/user/<%= book.user.username %>"><%= book.user.username %>  </a>
                   <%  } else { %>
-                    <p class="username"> <%= book.postedBy %> </p>
+                    <p class="username"> <%= book.postedBy %>  </p>
                   <%  } %>
 
                 <!-- Other info -->
@@ -29,8 +30,8 @@
                       <!-- Available/ Sold -->
                       <% if(book.sold) { %>
                         <p class="sold"> Sold </p>
-                            <% if( !book.postedBy  && currentUser) { %>
-                              <% if(currentUser._id.equals(book.user.id)) { %>
+                            <% if( userExists === true ) { %>
+                              <% if(currentUser._id.equals(bookUser)) { %>
                                 <form action="/browse/<%= book._id %>/sold" method="GET">
                                   <button class="btn btn-success" type="submit"> Mark Available </button>
                                 </form>
@@ -38,8 +39,8 @@
                             <% } %>
                       <% } else { %>
                         <p class="available"> Available </p>
-                            <% if( !book.postedBy && currentUser) { %>
-                              <% if(currentUser._id.equals(book.user.id)) { %>
+                            <% if( userExists === true ) { %>
+                              <% if(currentUser._id.equals(bookUser)) { %>
                                 <form action="/browse/<%= book._id %>/sold" method="GET">
                                   <button class="btn btn-danger" type="submit"> Mark Sold </button>
                                 </form>
@@ -53,8 +54,8 @@
                       <div class="desc text-center"> <%= book.description %> </div>
                       <p class="contact"> Contact Me : <%=book.contact %> </p>
                       <div class="buttons text-center">
-                        <% if( !book.postedBy && currentUser) { %>
-                          <% if(currentUser._id.equals(book.user.id)) { %>
+                        <% if( userExists === true ) { %>
+                          <% if(currentUser._id.equals(bookUser)) { %>
                             <a class="btn btn-info" href="/browse/<%= book.id %>/edit"> Edit </a>
                             <form action="/browse/<%= book._id %>?_method=DELETE" method="POST">
                               <button class="btn btn-danger" > Delete </button>

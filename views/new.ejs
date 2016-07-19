@@ -6,6 +6,9 @@
   <div class='row'>
     <div class="col-xs-1 col-sm-3"></div>
     <div class="card new col-xs-10 col-sm-6 text-center">
+        <% if(!currentUser) { %>
+        <div class="alert alert-danger" role="alert"> Users can view your post better when you sign up. <a href="/signup">Sign Up now!</a> </div>
+        <% } %>
 
         <h1> Upload New Product: </h1>
 

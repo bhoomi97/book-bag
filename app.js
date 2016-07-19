@@ -58,8 +58,8 @@ app.get("/", function(req, res){
 });
 // Get all products
 app.get("/browse", function(req, res){
-
-    Book.find({} , function(err, allBooks){
+    Book.find({}).sort({uploadDate: -1}).exec(function(err, allBooks){
+    // Book.find({}, , function(err, allBooks){
       res.render("browse", {allBooks: allBooks});
     });
 
@@ -121,7 +121,6 @@ app.get("/browse/:id", function(req, res){
       res.redirect("/browse");
     } else {
       res.render("show", {book: foundBook});
-      console.log(foundBook.user);
     }
   });
 });

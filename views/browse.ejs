@@ -3,8 +3,8 @@
 
 <div class='container-fluid '>
   <div class='row text-center'>
-    <div class='col-xs-12'>
-      <b>Browse By Year:</b>
+    <div class='browse col-xs-12'>
+      <b> Filter By Year: </b>
       <div class="btn-group" role="group">
         <a type="button" class="btn btn-default" href="/browse/year/1"> Ist</a>
         <a type="button" class="btn btn-default" href="/browse/year/2">IInd</a>
@@ -23,11 +23,11 @@
           </div>
 
           <div class="caption">
-              <h4><a> <%= book.title %></a></h4>
+              <h4><a href="/browse/<%= book._id %>"> <%= book.title %></a></h4>
               <% if(book.sold) { %>
-                <h5 style="color:red;"> Sold </h5>
+                <h5 style="color:red;"> <span class="fa fa-frown-o"></span> Sold </h5>
               <% } else { %>
-                <h5 style="color:green;"> Available </h5>
+                <h5 style="color:green;"> <span class="fa fa-smile-o"></span> Available </h5>
               <% } %>
 
               <a class="btn btn-default" href="/browse/<%= book._id %>">More Info</a>
