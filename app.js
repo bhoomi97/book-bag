@@ -3,6 +3,7 @@ var express = require("express"),
     multer = require("multer"),
     methodOverride = require("method-override"),
     mongoose = require("mongoose"),
+    flash = require("connect-flash"),
     bodyParser = require("body-parser")
 
 // Multer Storage Options
@@ -11,7 +12,7 @@ var storage = multer.diskStorage({
         cb(null, './public/uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname)
+        cb(null, Date.now()+file.originalname)
     }
 });
 var upload = multer({ storage: storage });
@@ -32,6 +33,7 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
+app.use(flash());
 // passport config
   app.use(require("express-session")({
     secret: "random text",
@@ -46,9 +48,11 @@ app.use(methodOverride("_method"));
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
 
-// Global object
+// Global objects
 app.use(function(req, res,next){
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 
@@ -106,7 +110,7 @@ app.post("/browse", upload.single('image'), function(req, res){
     if(err) {
       console.log(err);
     } else {
-
+      req.flash("success", "Great Job! Your book is now posted online.")
       res.redirect("/browse");
     }
   });
@@ -144,6 +148,7 @@ app.put("/browse/:id", checkOwner, upload.single('image'), function(req, res){
     if(err)
       res.redirect("back");
     else {
+      req.flash("success", "Nice! Update successful.")
       res.redirect("/browse/"+ req.params.id);
     }
   })
@@ -154,6 +159,7 @@ app.delete("/browse/:id", function(req, res){
         if(err) {
             res.redirect("back");
         } else {
+            req.flash("error", "Book deleted!")
             res.redirect("/browse");
         }
     });
@@ -201,9 +207,11 @@ app.post("/signup", function(req, res){
   var newUser = new User({username: req.body.username});
   User.register(newUser, req.body.password, function(err, user){
     if(err){
+      req.flash("error", err.message + " Plase try again!");
       return res.redirect("/signup");
     } else {
       passport.authenticate("local")(req, res, function(){
+        req.flash("success" , "Welcome " + req.body.username + "! You're now successfully signed up!")
         res.redirect("/browse");
       });
     }
@@ -219,13 +227,16 @@ app.get("/signin", function(req, res){
 
 app.post("/signin",
   passport.authenticate("local", { successRedirect: "/browse",
-                                    failureRedirect: "/signin" })
+                                  successFlash: "Welcome! you're now logged in.",
+                                  failureRedirect: "/signin",
+                                  failureFlash: true })
 );
 
 // logout
 
 app.get("/logout", function(req, res) {
    req.logout();
+   req.flash("success", "Successfully logged out!")
    res.redirect("/signin");
 });
 
