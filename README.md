@@ -25,7 +25,8 @@
     ```
     mongod --dbpath path/to/where/you/want/to/save/data
     ```
-   Mac OSX users run:
+    
+    Mac OSX users run:
     ```
     ./mongod --dbpath path/to/save/data
     ```
